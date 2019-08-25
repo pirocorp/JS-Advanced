@@ -1,4 +1,4 @@
-function solve(){
+function createManager(){
     const getRecipe = (function () {
         const recipes = {
             apple: {
@@ -101,15 +101,6 @@ function solve(){
     }
 }
 
-let manager = solve();
+let manager = createManager();
 console.log(manager('restock flavour 50'));
-//manager('restock protein 10');
-//manager('prepare turkey 1');
-//manager('restock carbohydrate 10');
-//manager('prepare turkey 1');
-//manager("restock fat 10");
-//manager("prepare turkey 1");
-//manager("restock flavour 10");
-//manager("prepare turkey 1");
-//manager("prepare turkey 1");
 console.log(manager("prepare lemonade 4"));
