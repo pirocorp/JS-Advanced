@@ -1,0 +1,116 @@
+html{
+    /* Search for font is done for every character */
+    /* Google Fonts allows to load only specified characters from font Example: Only numbers*/
+    /* Or just use System Font Stack so that your site will look native to system calling it */
+    font-family: PT Sans, Helvetica, Verdana, sans-serif;
+    font-size: 16px;
+    /* line-height must be around 1.5 times size of font-size for good readability */
+    line-height: 1.5;
+    /* Alternative Syntax - Short hand properties */
+    /* font: 16px/1.5 PT Sans, Helvetica, Verdana, sans-serif; */
+}
+
+body{
+    max-width: 60rem;
+    margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: PT Serif, Georgia, 'Times New Roman', Times, serif;
+    /* 1.5 line-height for very large fonts is too much */
+    line-height: 1.2;
+    margin: 1em 0 0.5em 0;
+    padding: 0;
+}
+
+h1{ font-size: 2.6em; }
+h2{ font-size: 2.2em; }
+h3{ font-size: 1.9em; }
+h4{ font-size: 1.6em; }
+h5{ font-size: 1.4em; }
+h6{ font-size: 1.2em; }
+
+p{
+    margin: 0;
+    padding-bottom: 1.5rem;
+}
+
+li {
+    max-width: 40rem;
+    margin: 0.5rem auto 0.5rem;
+}
+
+ol, ul, dl{
+    margin: 0 0 1.5rem 0;
+}
+
+ul, ol{
+    padding: 0;
+    margin-left: 1.5rem;    
+}
+
+ul li, ol li{
+    list-style-position: inside;
+}
+
+ul ul{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+ul li{ list-style-type: square; }
+ul ul li{ list-style-type: disc; }
+ul ul ul li{ list-style-type: circle; }
+
+blockquote{
+    border-left: 4px solid #DDD;
+    font-style: italic;
+    margin-bottom: 0 0 1.5rem 2rem; 
+    padding: 1rem 2rem;
+    position: relative;
+}
+
+table{
+    width: 100%;
+    table-layout: fixed;
+    margin-bottom: 1.5rem;
+    border: 1px solid #CCC;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table td, table th{
+    border: 1px solid #AAA;
+    padding: 0.3rem 0.5rem;
+}
+
+table thead th{
+    text-align: left;
+    background: #CCC;
+}
+
+table tr:nth-child(odd) td{
+    background-color: #F1F1F1;
+}
+
+table tr:hover td{
+    background: black;
+    color: #FFF;
+    border-color: transparent; 
+}
+
+blockquote .author{
+    text-align: right;
+}
+
+/* blockquote::before{
+    display: block;
+    content: '"';
+    font-size: 4rem;
+    position: absolute;
+    top: -1rem; left: 0.1rem;
+} */
+
+hr{
+    margin: 2rem 0;
+}
