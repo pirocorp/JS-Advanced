@@ -3,7 +3,7 @@ const { expect } = require('chai');
 
 describe('05. Check for Symmetry Tests', () => {
     describe('General Tests', () => {
-        it('Expect sum to be function', () => {
+        it('Expect isSymmetric to be function', () => {
             expect(typeof isSymmetric).to.be.equal('function')
         });
     });
