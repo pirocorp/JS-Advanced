@@ -3,14 +3,14 @@ function makeCard(face, suit) {
     const validCardSuits = ['S', 'H', 'D', 'C'];
 
     function checkFace(currentFace) {
-        if (!validCardFaces.some(c => c === currentFace)) {
-            throw new Error("Invalid Card Face");
+        if (!validCardFaces.some(c => c === currentFace)) {            
+            throw new Error(`Invalid Card: ${face}${suit}`);
         }
     }
 
     function checkSuit(currentSuit) {
         if (!validCardSuits.some(c => c === currentSuit)) {
-            throw new Error("Ivalid Card Suit");
+            throw new Error(`Ivalid Card: ${face}${suit}`);
         }
     } 
     
@@ -23,27 +23,22 @@ function makeCard(face, suit) {
     return {            
         getFace: () => cardFace,
         getSuit: () => cardSuit,
-        setFace: (newFace) => {
-            checkFace(newFace);
-            cardFace = newFace;
-        },
-        setSuit: (newSuit) => {
-            checkSuit(newSuit);
-            cardSuit = newSuit;
-        },
-        toString: () => {
+        
+        toString: function() {
+            const result = `${this.getFace()}`;
+
             switch(cardSuit){
                 case 'C':
-                    return `${cardFace}\u2663`;
+                    return `${result}\u2663`;
                 case 'D':
-                    return `${cardFace}\u2666`;
+                    return `${result}\u2666`;
                 case 'H':
-                    return `${cardFace}\u2665`;
+                    return `${result}\u2665`;
                 case 'S':
-                    return `${cardFace}\u2660`;
+                    return `${result}\u2660`;
             }
         },
     };
 }
 
-console.log('' + makeCard('A', 'C'));
+console.log('' + makeCard('1', 'C'));
