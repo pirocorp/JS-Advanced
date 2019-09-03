@@ -1,7 +1,7 @@
 const { isOddOrEven } = require('../02. Even Or Odd');
 const { expect } = require('chai');
 
-describe('02. Even Or Odd', () => {
+describe('02. Even Or Odd Tests', () => {
     describe('General Tests', () => {
         it('Expect isOddOrEven to be function', () => {
             expect(typeof isOddOrEven).to.be.equal('function')
