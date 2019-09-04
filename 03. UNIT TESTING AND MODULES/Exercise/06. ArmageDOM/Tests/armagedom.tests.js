@@ -14,20 +14,22 @@ global.document = window.document;
 //Original Body
 const originalBodyHTML = document.body.innerHTML;
 
-
+//JQUERY
 const $ = global.jQuery = require('jquery');
+
+//Function to be tested
 const { nuke } = require('../armagedom');
 
 describe('06. ArmageDOM Tests', () => {
     describe('General Tests', () => {
         it('Expect nuke to be function', () => {
-            expect(typeof nuke).to.be.equal('function')
+            expect(typeof nuke).to.be.equal('function');
         });
     });
 
     describe('General Frameworks Tests', () => {
         it('Test JSDOM', () => {
-            const pElement = document.querySelector('#target div.nested.target p')
+            const pElement = document.querySelector('#target div.nested.target p');
             expect(pElement.textContent).to.be.equal('This is some text', 'JSDOM not working properly')
         });
 
