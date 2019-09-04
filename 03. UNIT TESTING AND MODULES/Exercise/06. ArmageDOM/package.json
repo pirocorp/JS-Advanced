@@ -1,0 +1,17 @@
+{
+  "name": "06.-armagedom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "armagedom.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "jquery": "^3.4.1",
+    "jsdom": "^15.1.1",
+    "mocha": "^6.2.0"
+  }
+}
