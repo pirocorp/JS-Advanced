@@ -1,4 +1,4 @@
-//Static methods example
+//Static methods example 
 class Point {
     constructor(x, y) {
         this.x = x;
