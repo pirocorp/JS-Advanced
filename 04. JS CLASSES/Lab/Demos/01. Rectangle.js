@@ -26,4 +26,4 @@ class Rectangle {
 console.log(Rectangle);
 const rect = new Rectangle(5, 5, 'Red');
 console.log(rect);
-console.log(rect.calcArea());
+console.log(rect.calcArea()); 
