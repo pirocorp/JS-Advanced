@@ -1,4 +1,4 @@
-class Card {
+class Card { 
     //Creating private fields face and suit
     //Usinc closure in the constructor
     constructor(inFace, inSuit) {
