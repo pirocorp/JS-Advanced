@@ -1,4 +1,4 @@
-//Before ES2015 (ES6) classes were composed manually
+//Before ES2015 (ES6) classes were composed manually 
 //Constructor function defines class data
 //class works behind the scene this way 
 function Rectangle(width, height) {
