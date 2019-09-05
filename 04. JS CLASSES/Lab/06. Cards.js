@@ -37,6 +37,10 @@ let result = (function() {
 
             this._suit = value;
         }
+
+        toString() {
+            return this.face + this.suit;
+        }
     }
 
     return {
@@ -49,10 +53,10 @@ let Card = result.Card;
 let Suits = result.Suits;
 
 let card = new Card("Q", Suits.CLUBS);
-console.log(card);
+console.log(card.toString());
 
 card.face = 'A';
 card.suit = Suits.DIAMONDS;
-console.log(card);
+console.log(card.toString());
 
-let card2 = new Card("1", Suits.DIAMONDS); //Should throw Error
+//let card2 = new Card("1", Suits.DIAMONDS); //Should throw Error
