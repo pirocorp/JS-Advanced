@@ -1,5 +1,5 @@
-//Accessor Properties Example 
-//Accessor are used for validation mostly
+//Accessors Properties Example 
+//Accessors are used for validation mostly
 class Circle {
     constructor(radius) {   
         //Constructor calls Radius Setter      
