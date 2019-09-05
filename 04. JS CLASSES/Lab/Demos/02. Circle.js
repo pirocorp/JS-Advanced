@@ -1,4 +1,4 @@
-//Accessor Properties Example
+//Accessor Properties Example 
 //Accessor are used for validation mostly
 class Circle {
     constructor(radius) {   
