@@ -117,3 +117,16 @@ Student.prototype.constructor = Student;
 Student.prototype.greeting = function() {
     alert('Yo! I\'m ' + this.name.first + '.');
 };
+
+//Object member summary
+//Those defined inside a constructor function that are given to object instances.These are fairly 
+//easy to spot — in your own custom code, they are the members defined inside a constructor using the this.x = x type lines; 
+//in built in browser code, they are the members only available to object instances(usually created by calling a constructor 
+//using the new keyword, e.g.var myInstance = new myConstructor()).
+
+//Those defined directly on the constructor themselves, that are available only on the constructor.
+//These are commonly only available on built -in browser objects, and are recognized by being chained directly onto a constructor, 
+//not an instance.For example, Object.keys().
+
+//Those defined on a constructor's prototype, which are inherited by all instances and inheriting object classes. 
+//These include any member defined on a Constructor's prototype property, e.g.myConstructor.prototype.x().
