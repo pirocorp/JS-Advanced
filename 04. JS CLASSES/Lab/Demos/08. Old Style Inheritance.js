@@ -12,6 +12,8 @@ function Person(first, last, age, gender, interests) {
 };
 
 //Add function to prototype object of constructor function Person
+//the func.prototype property of functions, which specifies the [[Prototype]] to be assigned to 
+//all instances of objects created by the given function when used as a constructor.
 Person.prototype.bio = function () {
     // First define a string, and make it equal to the part of
     // the bio that we know will always be the same.
@@ -87,6 +89,7 @@ Object.defineProperty(Teacher.prototype, 'constructor', {
 });
 
 //Add function to prototype object of constructor function Teacher
+//An inherited function acts just as any other property, including property shadowing (in this case, a form of method overriding).
 Teacher.prototype.greeting = function() {
     var prefix;
 
@@ -119,6 +122,11 @@ Student.prototype.constructor = Student;
 Student.prototype.greeting = function() {
     alert('Yo! I\'m ' + this.name.first + '.');
 };
+
+//A "constructor" in JavaScript is "just" a function that happens to be called with the new operator.
+const student = new Student('A', 'B', 22, 'M', ['X', 'Y']);
+//The student.prototype property represents the student prototype object.
+student.prototype
 
 //Object member summary
 //Those defined inside a constructor function that are given to object instances.These are fairly 
