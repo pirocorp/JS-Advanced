@@ -20,8 +20,10 @@ class Square extends Rectangle {
     constructor(length) {
         this.height; // ReferenceError, super needs to be called first!
 
-        // Here, it calls the parent class's constructor with lengths
-        // provided for the Rectangle's width and height
+        //For sub - classes, the this intialization to a newly allocated object is always 
+        //dependant on the parent class constructor, i.e the constructor function of the class 
+        //from which you're extending.
+        //To call the parent constructor we have to use the super() operator
         super(length, length);
 
         // Note: In derived classes, super() must be called before you

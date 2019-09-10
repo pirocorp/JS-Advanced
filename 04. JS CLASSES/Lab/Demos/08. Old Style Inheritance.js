@@ -67,6 +67,8 @@ Person.prototype.farewell = function () {
 
 //Constructor function Teacher
 function Teacher(first, last, age, gender, interests, subject) {
+    //this is context from wich Person constructor function is called
+    //So here Person's this will be equal to this in Teacher
     Person.call(this, first, last, age, gender, interests);
     this.subject = subject;
 }
@@ -130,3 +132,6 @@ Student.prototype.greeting = function() {
 
 //Those defined on a constructor's prototype, which are inherited by all instances and inheriting object classes. 
 //These include any member defined on a Constructor's prototype property, e.g.myConstructor.prototype.x().
+
+//Because of the way JavaScript works, with the prototype chain, etc., the sharing of functionality between objects is often called delegation. 
+//Specialized objects delegate functionality to a generic object type.
