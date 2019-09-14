@@ -1,0 +1,1 @@
+$('div').css('background', 'blue'); //Make all DIVs blue
