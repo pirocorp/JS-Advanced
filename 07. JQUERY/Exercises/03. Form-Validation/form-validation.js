@@ -50,7 +50,7 @@ function validate() {
             }
         }
 
-        function validateHidenFields() {
+        function validateHiddenFields() {
             const $companyElement = $('#company');
 
             if ($companyElement.is(':checked')) {
@@ -73,7 +73,7 @@ function validate() {
         validateUsername();
         validateEmail();
         validatePassword();
-        validateHidenFields();
+        validateHiddenFields();
 
         return result;
     }
