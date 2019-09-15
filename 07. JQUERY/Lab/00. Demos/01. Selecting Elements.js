@@ -43,10 +43,10 @@ $("#myForm :input");
 //Elements that have not been added to the DOM will always be considered hidden
 $("div:visible");
 
-// All except the first three divs.
+// All except the first three div elements.
 $("div:gt(2)");
 
-// All currently animated divs.
+// All currently animated div elements.
 $("div:animated");
 
 //Does My Selection Contain Any Elements?
@@ -69,7 +69,7 @@ if ($("div.foo").length) {
 //you'll have to repeat the selection or otherwise add them to the 
 //selection stored in the variable. Stored selections don't magically 
 //update when the DOM changes.
-let divs = $("div");
+let divElements = $("div");
 
 //Refining & Filtering Selections
 $("div.foo").has("p");         // div.foo elements that contain <p> tags

@@ -1,1 +1,1 @@
-$('div').css('background', 'blue'); //Make all DIVs blue
+$('div').css('background', 'blue'); //Make all div elements blue
