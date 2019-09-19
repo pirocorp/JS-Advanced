@@ -16,6 +16,19 @@ i {
     color: white;
 }
 
+.nav {
+    position: -webkit-sticky;
+}
+
+.sticky {
+  position: fixed;
+  /* width: 100%; */
+  left: 0;
+  top: 0;
+  z-index: 100;
+  border-top: 0;
+}
+
 nav {
     background: #2d2e2e;
     padding: 0.2em 5em;
