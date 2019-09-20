@@ -8,7 +8,10 @@ const gameStart = document.querySelector('.game-start');
         document.addEventListener('keydown', onKeyDown);
         document.addEventListener('keyup', onKeyUp);
 
-        let state = initialState();
+        let state = initialState({
+            areaWidth: gameArea.offsetWidth,
+            areaHeight: gameArea.offsetHeight,
+        });
 
         function onGameStart() {
             gameStart.classList.add('hide');
@@ -96,14 +99,7 @@ const gameStart = document.querySelector('.game-start');
 
             // Modify fireballs positions
             let fireBalls = document.querySelectorAll('.fire-ball');
-
             state.attacks.forEach(a => a.el.style.left = a.x + 'px');
-
-            fireBalls.forEach(fireBall => {
-                if (fireBall.x + fireBall.offsetWidth > gameArea.offsetWidth) {
-                    fireBall.parentElement.removeChild(fireBall)
-                }
-            });
 
             // Apply gravitation
             let isInAir = (state.player.y + state.player.height) <= gameArea.offsetHeight
