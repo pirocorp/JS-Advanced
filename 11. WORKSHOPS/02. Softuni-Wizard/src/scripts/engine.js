@@ -22,7 +22,8 @@ const initialState = () => ({
 const nextPlayer = (state) => (state.player);
 const nextScene = (state) => (state.scene);
 const nextClouds = (state) => (state.clouds);
-const nextAttacks = (state) => (state.attacks);
+//spread operator get all props from a, and callback modify x property
+const nextAttacks = (state) => state.attacks.map(a => ({ ...a, x: a.x + game.speed * game.fireBallMultiplier }));
 const nextBugs = (state) => (state.bugs);
 
 const next = (state) => ({
@@ -48,13 +49,20 @@ function gameOverAction() {
     gameOver.classList.remove('hide');
 }
 
-function addFireBall(player) {
+function addFireBall(state) {
     let fireBall = document.createElement('div');
     
     fireBall.classList.add('fire-ball');
-    fireBall.style.top = (player.y + player.height / 3 - 5) + 'px';
-    fireBall.x = player.x + player.width;
+    fireBall.style.top = (state.player.y + state.player.height / 3 - 5) + 'px';
+    fireBall.x = state.player.x + state.player.width;
     fireBall.style.left = fireBall.x + 'px';
+
+    state.attacks.push({
+        x: state.player.x + state.player.width,
+        y: state.player.y + state.player.height / 3 - 5,
+        el: fireBall
+    });
+
     gameArea.appendChild(fireBall);
 }
 

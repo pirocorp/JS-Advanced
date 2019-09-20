@@ -96,9 +96,12 @@ const gameStart = document.querySelector('.game-start');
 
             // Modify fireballs positions
             let fireBalls = document.querySelectorAll('.fire-ball');
+
+            state.attacks.forEach(a => a.el.style.left = a.x + 'px');
+
             fireBalls.forEach(fireBall => {
-                fireBall.x += game.speed * game.fireBallMultiplier;
-                fireBall.style.left = fireBall.x + 'px';
+                //fireBall.x += game.speed * game.fireBallMultiplier;
+                //fireBall.style.left = fireBall.x + 'px';
 
                 if (fireBall.x + fireBall.offsetWidth > gameArea.offsetWidth) {
                     fireBall.parentElement.removeChild(fireBall)
@@ -126,7 +129,7 @@ const gameStart = document.querySelector('.game-start');
             }
             if (keys.Space && timestamp - state.player.lastTimeFiredFireball > game.fireInterval) {
                 wizard.classList.add('wizard-fire');
-                addFireBall(state.player);
+                addFireBall(state);
                 state.player.lastTimeFiredFireball = timestamp;
             }
             
