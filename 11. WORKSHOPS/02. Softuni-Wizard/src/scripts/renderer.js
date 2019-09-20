@@ -23,9 +23,7 @@ const gameStart = document.querySelector('.game-start');
         }
 
         //using currying for capturing timestamp of last and previous frame
-        const frame = (previousFrameTimestamp) => (currentFrameTimestamp) => {    
-            //this will limit frame rate up to 40 FPS
-
+        const frame = (previousFrameTimestamp) => async (currentFrameTimestamp) => {   
             if (!scene.isActiveGame) {
                 return;
             }

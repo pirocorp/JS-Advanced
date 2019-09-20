@@ -6,5 +6,5 @@ let game = {
     cloudSpawnInterval: 3000,
     bugSpawnInterval: 1000,
     bugKillBonus: 2000,
-    maxFPS: 60,
+    maxFPS: 100,
 };
