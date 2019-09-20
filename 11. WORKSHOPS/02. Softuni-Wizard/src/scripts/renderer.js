@@ -125,7 +125,8 @@ const gameStart = document.querySelector('.game-start');
                 addFireBall(player);
                 player.lastTimeFiredFireball = timestamp;
             }
-            else {
+            
+            if(!keys.Space) {
                 wizard.classList.remove('wizard-fire');
             }
 
