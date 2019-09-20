@@ -8,6 +8,8 @@ const gameStart = document.querySelector('.game-start');
         document.addEventListener('keydown', onKeyDown);
         document.addEventListener('keyup', onKeyUp);
 
+        let state = initialState();
+
         function onGameStart() {
             gameStart.classList.add('hide');
 
@@ -32,7 +34,9 @@ const gameStart = document.querySelector('.game-start');
             const timeBetweenFrames = 1000 / game.maxFPS;
 
             if(timeDelta >= timeBetweenFrames) {
-                draw(currentFrameTimestamp)
+                //migrate state to latest state
+                state = next(state);
+                draw(currentFrameTimestamp, state);
                 window.requestAnimationFrame(frame(currentFrameTimestamp));
             } else {
                 window.requestAnimationFrame(frame(previousFrameTimestamp));
@@ -41,7 +45,7 @@ const gameStart = document.querySelector('.game-start');
 
         //Game Loop
         //timestamp is send by window.requestAnimationFrame        
-        function draw (timestamp) {
+        function draw (timestamp, state) {
             const wizard = document.querySelector('.wizard');
 
             state.scene.score++;

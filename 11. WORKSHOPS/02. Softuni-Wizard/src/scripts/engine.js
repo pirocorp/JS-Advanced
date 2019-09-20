@@ -1,13 +1,6 @@
 let keys = {};
 
-let scene = {
-    isActiveGame: true,
-    score: 0,
-    lastCloudSpawn: 0,
-    lastBugSpawn: 0
-};
-
-let state = {
+const initialState = () => ({
     player: {
         x: 150,
         y: 100,
@@ -21,7 +14,19 @@ let state = {
         lastCloudSpawn: 0,
         lastBugSpawn: 0
     },
-}
+    clouds: [],
+    attacks: [],
+    bugs: [],
+});
+
+//state will be immutable
+const next = (state) => ({
+    player: state.player,
+    scene: state.scene,
+    clouds: state.clouds,
+    attacks: state.attacks,
+    bugs: state.bugs
+});
 
 function isCollision(firstElement, secondElement) {
     let firstRect = firstElement.getBoundingClientRect();
