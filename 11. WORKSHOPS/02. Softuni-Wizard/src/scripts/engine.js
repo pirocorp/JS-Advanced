@@ -44,6 +44,7 @@ const nextAttacks = (state) => state.attacks
 const nextBugs = (state) => state.bugs
     .filter(b => {
         if(b.x + state.scene.bugWidth > 0) {
+
             return true;
         }
 

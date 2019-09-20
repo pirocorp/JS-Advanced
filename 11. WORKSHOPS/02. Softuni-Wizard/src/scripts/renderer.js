@@ -83,13 +83,9 @@ const gameStart = document.querySelector('.game-start');
 
             // Modify bug positions
             let bugs = document.querySelectorAll('.bug');
-            bugs.forEach(bug => {
-                bug.x -= game.speed * 3;
-                bug.style.left = bug.x + 'px';
-
-                if (bug.x + bugs.offsetWidth <= 0) {
-                    bug.parentElement.removeChild(bug);
-                }
+            
+            state.bugs.forEach(bug => {
+                bug.el.style.left = bug.x + 'px';
             });
 
             // Modify cloud positions
@@ -143,14 +139,14 @@ const gameStart = document.querySelector('.game-start');
                     gameOverAction();
                 }
 
-                fireBalls.forEach(fireBall => {
+                /* fireBalls.forEach(fireBall => {
                     if (isCollision(fireBall, bug)) {
                         state.scene.score += game.bugKillBonus
-                        /* TODO Make it work again :) */
-                        //bug.parentElement.removeChild(bug);                        
-                        //fireBall.parentElement.removeChild(fireBall);
+                        TODO Make it work again :)
+                        bug.parentElement.removeChild(bug);                        
+                        fireBall.parentElement.removeChild(fireBall);
                     }
-                })
+                }) */
             });
 
             
