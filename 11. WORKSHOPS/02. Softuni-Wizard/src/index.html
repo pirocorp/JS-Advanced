@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <title>Softuni Wizard</title>
+    <title>SoftUni Wizard</title>
 </head>
 <body>
     <div class="game-section">
@@ -65,6 +65,8 @@
             window.requestAnimationFrame(gameAction);
         }
 
+        //timestamp is send by window.requestAnimationFrame
+        //Game Loop
         function gameAction(timestamp) {
             const wizard = document.querySelector('.wizard');
 
