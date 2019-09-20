@@ -62,6 +62,12 @@ const gameStart = document.querySelector('.game-start');
                 bug.style.top = (gameArea.offsetHeight - 60) * Math.random() + 'px';
                 gameArea.appendChild(bug);
                 state.scene.lastBugSpawn = timestamp;
+
+                state.bugs.push({
+                    x: gameArea.offsetWidth - 60,
+                    y: (gameArea.offsetHeight - 60) * Math.random(),
+                    el: bug,
+                });
             } 
 
             // Add clouds
@@ -140,8 +146,9 @@ const gameStart = document.querySelector('.game-start');
                 fireBalls.forEach(fireBall => {
                     if (isCollision(fireBall, bug)) {
                         state.scene.score += game.bugKillBonus
-                        bug.parentElement.removeChild(bug);
-                        fireBall.parentElement.removeChild(fireBall);
+                        /* TODO Make it work again :) */
+                        //bug.parentElement.removeChild(bug);                        
+                        //fireBall.parentElement.removeChild(fireBall);
                     }
                 })
             });

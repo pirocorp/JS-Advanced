@@ -1,0 +1,1 @@
+const removeElement = (e) => e.el.parentElement.removeChild(e.el);

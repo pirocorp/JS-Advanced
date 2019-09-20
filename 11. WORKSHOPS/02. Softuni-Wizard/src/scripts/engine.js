@@ -1,9 +1,6 @@
 let keys = {};
 
-const initialState = ({
-    areaWidth,
-    areaHeight
-}) => ({
+const initialState = (options) => ({
     player: {
         x: 150,
         y: 100,
@@ -16,10 +13,11 @@ const initialState = ({
         score: 0,
         lastCloudSpawn: 0,
         lastBugSpawn: 0,
-        areaWidth,
-        areaHeight,
         attackWidth: 40,
         attackHeight: 40,
+        bugWidth: 60,
+        bugHeight: 60,
+        ...options
     },
     clouds: [],
     attacks: [],
@@ -29,21 +27,30 @@ const initialState = ({
 const nextPlayer = (state) => (state.player);
 const nextScene = (state) => (state.scene);
 const nextClouds = (state) => (state.clouds);
+
 const nextAttacks = (state) => state.attacks
     .filter(a => {
         //remove all attacks which are outside the screen from dom and state attacks array
-        if (a.x + state.scene.attackWidth > state.scene.areaWidth) {
-            a.el.parentElement.removeChild(a.el);
-
+        if (a.x + state.scene.attackWidth >= state.scene.areaWidth) {           
+            removeElement(a);
             return false;
         }
 
         return true;
     })
     //spread operator get all props from a, and callback modify x property
-    .map(a => ({ ...a, x: a.x + game.speed * game.fireBallMultiplier })) 
-    ;
-const nextBugs = (state) => (state.bugs);
+    .map(a => ({ ...a, x: a.x + game.speed * game.fireBallMultiplier }));
+
+const nextBugs = (state) => state.bugs
+    .filter(b => {
+        if(b.x + state.scene.bugWidth > 0) {
+            return true;
+        }
+
+        removeElement(b);
+        return false        
+    })
+    .map(b => ({ ...b, x: b.x - game.speed * 3 }));
 
 const next = (state) => ({
     player: nextPlayer(state),
