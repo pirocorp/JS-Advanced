@@ -14,7 +14,13 @@ let state = {
         width: 0,
         height: 0,
         lastTimeFiredFireball: 0
-    }
+    },
+    scene: {
+        isActiveGame: true,
+        score: 0,
+        lastCloudSpawn: 0,
+        lastBugSpawn: 0
+    },
 }
 
 function isCollision(firstElement, secondElement) {
@@ -28,7 +34,7 @@ function isCollision(firstElement, secondElement) {
 }
 
 function gameOverAction() {
-    scene.isActiveGame = false;
+    state.scene.isActiveGame = false;
     gameOver.classList.remove('hide');
 }
 

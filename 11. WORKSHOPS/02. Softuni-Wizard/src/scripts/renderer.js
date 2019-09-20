@@ -24,7 +24,7 @@ const gameStart = document.querySelector('.game-start');
 
         //using currying for capturing timestamp of last and previous frame
         const frame = (previousFrameTimestamp) => async (currentFrameTimestamp) => {   
-            if (!scene.isActiveGame) {
+            if (!state.scene.isActiveGame) {
                 return;
             }
 
@@ -44,28 +44,28 @@ const gameStart = document.querySelector('.game-start');
         function draw (timestamp) {
             const wizard = document.querySelector('.wizard');
 
-            scene.score++;
+            state.scene.score++;
 
             // Add bugs
-            if (timestamp - scene.lastBugSpawn > game.bugSpawnInterval + 5000 * Math.random()) {
+            if (timestamp - state.scene.lastBugSpawn > game.bugSpawnInterval + 5000 * Math.random()) {
                 let bug = document.createElement('div');
                 bug.classList.add('bug');
                 bug.x = gameArea.offsetWidth - 60;
                 bug.style.left = bug.x + 'px';
                 bug.style.top = (gameArea.offsetHeight - 60) * Math.random() + 'px';
                 gameArea.appendChild(bug);
-                scene.lastBugSpawn = timestamp;
+                state.scene.lastBugSpawn = timestamp;
             } 
 
             // Add clouds
-            if (timestamp - scene.lastCloudSpawn > game.cloudSpawnInterval + 20000 * Math.random()) {
+            if (timestamp - state.scene.lastCloudSpawn > game.cloudSpawnInterval + 20000 * Math.random()) {
                 let cloud = document.createElement('div');
                 cloud.classList.add('cloud');
                 cloud.x = gameArea.offsetWidth - 200;
                 cloud.style.left = cloud.x + 'px';
                 cloud.style.top = (gameArea.offsetHeight - 200) * Math.random() + 'px';
                 gameArea.appendChild(cloud);
-                scene.lastCloudSpawn = timestamp;
+                state.scene.lastCloudSpawn = timestamp;
             }
 
             // Modify bug positions
@@ -139,7 +139,7 @@ const gameStart = document.querySelector('.game-start');
 
                 fireBalls.forEach(fireBall => {
                     if (isCollision(fireBall, bug)) {
-                        scene.score += game.bugKillBonus
+                        state.scene.score += game.bugKillBonus
                         bug.parentElement.removeChild(bug);
                         fireBall.parentElement.removeChild(fireBall);
                     }
@@ -152,5 +152,5 @@ const gameStart = document.querySelector('.game-start');
             wizard.style.left = state.player.x + 'px';
 
             // Apply score
-            gamePoints.textContent = scene.score;            
+            gamePoints.textContent = state.scene.score;            
         }
