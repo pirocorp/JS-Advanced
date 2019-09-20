@@ -23,7 +23,8 @@ const nextPlayer = (state) => (state.player);
 const nextScene = (state) => (state.scene);
 const nextClouds = (state) => (state.clouds);
 //spread operator get all props from a, and callback modify x property
-const nextAttacks = (state) => state.attacks.map(a => ({ ...a, x: a.x + game.speed * game.fireBallMultiplier }));
+const nextAttacks = (state) => state.attacks
+    .map(a => ({ ...a, x: a.x + game.speed * game.fireBallMultiplier }));
 const nextBugs = (state) => (state.bugs);
 
 const next = (state) => ({

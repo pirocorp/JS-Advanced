@@ -100,9 +100,6 @@ const gameStart = document.querySelector('.game-start');
             state.attacks.forEach(a => a.el.style.left = a.x + 'px');
 
             fireBalls.forEach(fireBall => {
-                //fireBall.x += game.speed * game.fireBallMultiplier;
-                //fireBall.style.left = fireBall.x + 'px';
-
                 if (fireBall.x + fireBall.offsetWidth > gameArea.offsetWidth) {
                     fireBall.parentElement.removeChild(fireBall)
                 }
