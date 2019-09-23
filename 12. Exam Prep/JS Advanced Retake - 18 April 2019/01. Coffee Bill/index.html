@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Bill</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<h2>Coffee Bill</h2>
+<table id="bill">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody id="product-list">
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total:</td>
+            <td>0.00</td>
+        </tr>
+    </tfoot>
+</table>
+<section id="add-product">
+    <h3>Add new product</h3>
+    <label>
+        <span>
+            Product:
+        </span>
+        <input type="text">
+    </label>
+    <label>
+        <span>
+            Price:
+        </span>
+        <input type="number">
+    </label>
+    <button onclick="addProduct()">Add</button>
+</section>
+
+<script>
+    function addProduct() {
+        const inputElements = document.querySelectorAll('#add-product input');
+	    const productElement = inputElements[0];
+	    const priceElement = inputElements[1];
+
+        if(productElement.value === '') {
+            return;
+        }
+
+        if( priceElement.value === '' || 
+            Number(priceElement.value) <= 0) {
+            return;
+        }
+
+        const tableBodyElement = document.getElementById('product-list');
+
+        const product = productElement.value;
+        const price = priceElement.value;
+
+        const trElement = document.createElement('tr');
+
+        const tdProductElement = document.createElement('td');
+        tdProductElement.textContent = product;
+        
+        const tdPriceElement = document.createElement('td');
+        tdPriceElement.textContent = price;
+
+        trElement.appendChild(tdProductElement);
+        trElement.appendChild(tdPriceElement);
+        tableBodyElement.appendChild(trElement);
+
+        const totalValueElement = document.querySelector('#bill tfoot td:last-child');
+        
+        const currentTotalValue = Number(totalValueElement.textContent);
+        const newTotalValue = currentTotalValue + Number(price);
+        totalValueElement.textContent = newTotalValue;
+
+        productElement.value = '';
+        priceElement.value = '';
+    }
+</script>
+
+</body>
+</html>
