@@ -1,6 +1,6 @@
 const { Vacation } = require('./Vacation');
 
-const vacation = new Vacation('Madame', 'Venice', 5000);
+/* const vacation = new Vacation('Madame', 'Venice', 5000);
 const result = vacation.registerChild('Pesho', 6, 500);
 const result2 = vacation.registerChild('Pesho', 6, 5100);
 const result3 = vacation.registerChild('Pesho', 6, 6000);
@@ -37,3 +37,14 @@ console.log(vacation.numberOfChildren);
 
 console.log('-'.repeat(80));
 //----------------------------------------------------------------------
+console.log(vacation.toString()); */
+
+let vacation = new Vacation('Miss Elizabeth', 'Dubai', 2000);
+/* vacation.registerChild('Gosho', 5, 3000);
+vacation.registerChild('Lilly', 6, 1500);
+vacation.registerChild('Pesho', 7, 4000);
+vacation.registerChild('Tanya', 5, 5000);
+vacation.registerChild('Mitko', 10, 5500) */
+console.log(vacation.toString());
+console.log(vacation.numberOfChildren);
+

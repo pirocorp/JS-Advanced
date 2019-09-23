@@ -13,7 +13,7 @@ class Vacation {
     }
 
     registerChild(name, grade, budget) {
-        if(!budget || budget <= this.budget) {
+        if(budget < this.budget) {
             return `${name}'s money is not enough to go on vacation to ${this.destination}.`;
         }
 
@@ -51,9 +51,24 @@ class Vacation {
     }
 
     toString() {
-        const orderedGrades = Object.keys(this.kids).sort((a, b) => a.localeCompare(b));
+        if(this.numberOfChildren === 0) {
+            return `No children are enrolled for the trip and the organization of ${this.organizer} falls out...`;
+        }
 
-        return orderedGrades;
+        const orderedGrades = Object.keys(this.kids).sort((a, b) => a - b);
+        let result = `${this.organizer} will take ${this.numberOfChildren} children on trip to ${this.destination}\n`;
+
+        for (let i = 0; i < orderedGrades.length; i++) {
+            const grade = orderedGrades[i];
+            result += `Grade: ${grade}\n`
+
+            for (let j = 0; j < this.kids[grade].length; j++) {
+                const kid = array[j];
+                result += `${j}. ${kid}\n`
+            }
+        }
+
+        return result.trim();
     }
 }
 
