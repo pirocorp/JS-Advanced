@@ -21,7 +21,7 @@ class Vacation {
             return `${name} is already in the list for this ${this.destination} vacation.`;
         }
 
-        if(!this.kids.hasOwnProperty(grade)) {
+        if (!this.kids.hasOwnProperty(grade)) {
             this.kids[grade] = [];
         }
 
@@ -30,20 +30,22 @@ class Vacation {
     }
 
     removeChild(name, grade) {
-        if(!this.kids.hasOwnProperty(grade)) {
-            return `'We couldn't find ${name} in ${grade} grade.`;
+        if (!this.kids.hasOwnProperty(grade)) {
+            return `We couldn't find ${name} in ${grade} grade.`
         }
 
-        const indexOfKid = this.kids[grade]
-            .map(x => x.split('-')[0])
-            .indexOf(name);
+        let index = -1;
 
-        if(indexOfKid < 0) {
-            return `'We couldn't find ${name} in ${grade} grade.`;            
+        for (let students of this.kids[grade]) {
+            let kidName = students.split("-")[0];
+            index++;
+            if (kidName === name) {
+                this.kids[grade].splice(index, 1);
+                return this.kids[grade];
+            }
         }
 
-        this.kids[grade].splice(indexOfKid, 1);
-        return this.kids[grade];
+        return `We couldn't find ${name} in ${grade} grade.`
     }
 
     get numberOfChildren() {
@@ -63,12 +65,12 @@ class Vacation {
             result += `Grade: ${grade}\n`
 
             for (let j = 0; j < this.kids[grade].length; j++) {
-                const kid = array[j];
-                result += `${j}. ${kid}\n`
+                const kid = this.kids[grade][j];
+                result += `${j+1}. ${kid}\n`
             }
         }
 
-        return result.trim();
+        return result;
     }
 }
 

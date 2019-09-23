@@ -40,11 +40,13 @@ console.log('-'.repeat(80));
 console.log(vacation.toString()); */
 
 let vacation = new Vacation('Miss Elizabeth', 'Dubai', 2000);
-/* vacation.registerChild('Gosho', 5, 3000);
+vacation.registerChild('Gosho', 5, 3000);
 vacation.registerChild('Lilly', 6, 1500);
 vacation.registerChild('Pesho', 7, 4000);
 vacation.registerChild('Tanya', 5, 5000);
-vacation.registerChild('Mitko', 10, 5500) */
+vacation.registerChild('Mitko', 10, 5500)
+vacation.registerChild('AAA', 1, 500)
+console.log(vacation);
 console.log(vacation.toString());
 console.log(vacation.numberOfChildren);
 
