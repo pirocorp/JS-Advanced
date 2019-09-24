@@ -62,3 +62,7 @@ class AutoService {
         }
     }
 }
+
+module.exports = {
+    AutoService
+};
