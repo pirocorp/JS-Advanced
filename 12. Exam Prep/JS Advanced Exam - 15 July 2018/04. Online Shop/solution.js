@@ -21,4 +21,62 @@ function onlineShop(selector) {
     </div>`;
     $(selector).html(form);
     // Write your code here
-}
+ 
+    const $productElement = $('input.custom-select');
+    const $priceElement = $('#price');
+    const $quantityElement = $('#quantity');
+    const $submitButton = $('#submit');
+    const $capacityElement = $('#capacity');
+    const $sumElement = $('#sum');
+    const $inventoryListElement = $('ul.display');
+
+    function reset() {
+        $productElement.val('');
+        $priceElement.val(1);
+        $quantityElement.val(1);
+        $submitButton.attr('disabled', true);
+    }
+
+    function disableInterface() {
+        $capacityElement.val('full');
+        $capacityElement.addClass('fullCapacity');
+        $productElement.attr('disabled', true);
+        $priceElement.attr('disabled', true);
+        $quantityElement.attr('disabled', true);
+        $submitButton.attr('disabled', true);
+    }
+
+    function addProduct() {
+        $('<li>')
+            .text(`Product: ${$productElement.val()} Price: ${$priceElement.val()} Quantity: ${$quantityElement.val()}`)
+            .appendTo($inventoryListElement);
+    }
+
+    function onSubmitButtonClick() {
+        const currentCapacity = Number($capacityElement.val());
+        const currentQuantity = Number($quantityElement.val());
+        let totalCapacity = currentCapacity + currentQuantity
+
+        const currentSum = Number($sumElement.val());
+        const currentPrice = Number($priceElement.val());
+
+        if(totalCapacity <= 150) {
+            $capacityElement.val(totalCapacity);
+            $sumElement.val(currentSum + currentPrice);
+            addProduct();
+        } 
+
+        if(totalCapacity === 150) {
+            disableInterface();
+        }
+        
+        reset();
+    }
+
+    $productElement.on('input', () => {
+        let isEmpty = $productElement.val() === '';
+        $submitButton.attr('disabled', isEmpty);
+    });
+
+    $submitButton.on('click', onSubmitButtonClick);
+ }
