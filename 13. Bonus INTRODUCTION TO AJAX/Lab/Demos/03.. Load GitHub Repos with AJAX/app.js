@@ -17,6 +17,6 @@ function loadRepos() {
     }
 
     function displayError(err) {
-        s$("#repos").append($("<li>Error</li>"));
+        $("#repos").append($("<li>Error</li>"));
     }      
 }
