@@ -183,8 +183,11 @@
                         <a class="btn btn-danger handler" href="delete/{{key}}" onclick="navigateHandler(event)">Delete</a>
                         <a class="btn btn-warning handler" href="edit/{{key}}" onclick="navigateHandler(event)">Edit</a>
                     {{else}}
-                        <a class="btn btn-primary" href="#">Like</a>
-                        <span class="enrolled-span">Liked 1</span>
+                        {{#if liked}}
+                            <span class="enrolled-span">Liked {{likes.length}}</span>
+                        {{else}}
+                            <a class="btn btn-primary handler" href="like/{{key}}" onclick="navigateHandler(event)">Like</a>
+                        {{/if}}
                     {{/if}}
                 </div>
             </div>

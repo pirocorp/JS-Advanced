@@ -87,9 +87,18 @@ const movieService = (() => {
         return movieOwnerId === currentUserId;
     };
 
+    function validateLiked(likes){
+        if(!likes){
+            return false;
+        }
+
+        let email = JSON.parse(localStorage.getItem('auth')).email;
+        return likes.includes(email);
+    }
+
     return {
         async add(moveData) {  
-            moveData.likes = 0;
+            moveData.likes = [];
 
             let data = await request(moviesEndpoint, 'POST', moveData);
     
@@ -109,6 +118,8 @@ const movieService = (() => {
             data.ownerId = validateOwnership(data.ownerId);
             data.key = id;
 
+            data.liked = validateLiked(data.likes);
+
             return data;
         },
         async editMovieDetails(id, payload) {
@@ -119,6 +130,23 @@ const movieService = (() => {
             let data = await request(`${databaseUrl}/movies/${id}.json`, 'DELETE')
 
             return data;
+        },
+        async like(id) {
+            let data = await request(`${databaseUrl}/movies/${id}.json`, 'GET');
+
+            let email = JSON.parse(localStorage.getItem('auth')).email;
+
+            let likes = [];
+
+            if(!data.likes){
+                likes.push(email);                
+            } else {
+                likes = data.likes;
+                likes.push(email);
+            }            
+
+            let response = await request(`${databaseUrl}/movies/${id}.json`, 'PATCH', { likes });
+            return response;
         }
     }
 })();

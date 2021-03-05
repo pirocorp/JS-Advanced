@@ -35,6 +35,10 @@ const router = async (fullPath) => {
             await movieService.deleteMovie(id);
             navigate('home');
             return;
+        case "like":
+            await movieService.like(id);
+            navigate(`details/${id}`);
+            return;
     }
 
     let templateId = routes[path];
