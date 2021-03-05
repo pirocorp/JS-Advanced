@@ -180,7 +180,7 @@
                     <h3 class="my-3 ">Movie Description</h3>
                     <p>{{description}}</p>
                     {{#if ownerId}}
-                        <a class="btn btn-danger" href="#">Delete</a>
+                        <a class="btn btn-danger handler" href="delete/{{key}}" onclick="navigateHandler(event)">Delete</a>
                         <a class="btn btn-warning handler" href="edit/{{key}}" onclick="navigateHandler(event)">Edit</a>
                     {{else}}
                         <a class="btn btn-primary" href="#">Like</a>

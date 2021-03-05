@@ -88,7 +88,9 @@ const movieService = (() => {
     };
 
     return {
-        async add(moveData) {        
+        async add(moveData) {  
+            moveData.likes = 0;
+
             let data = await request(moviesEndpoint, 'POST', moveData);
     
             return data;
@@ -109,8 +111,13 @@ const movieService = (() => {
 
             return data;
         },
-        async editMovieDetails(id, payload){
+        async editMovieDetails(id, payload) {
             let data = await request(`${databaseUrl}/movies/${id}.json`, 'PATCH', payload);
+            return data;
+        },
+        async deleteMovie(id) {
+            let data = await request(`${databaseUrl}/movies/${id}.json`, 'DELETE')
+
             return data;
         }
     }

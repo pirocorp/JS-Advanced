@@ -16,9 +16,6 @@ const router = async (fullPath) => {
         return;
     }
 
-    let templateId = routes[path];
-    let template = Handlebars.compile(document.getElementById(templateId).innerHTML);    
-
     let templateData = authService.getAuthData();
     let movieDetails = {};
 
@@ -34,7 +31,14 @@ const router = async (fullPath) => {
             movieDetails = await movieService.getMovieDetails(id);
             Object.assign(templateData, movieDetails);
             break;
+        case "delete":
+            await movieService.deleteMovie(id);
+            navigate('home');
+            return;
     }
+
+    let templateId = routes[path];
+    let template = Handlebars.compile(document.getElementById(templateId).innerHTML);   
 
     let appElement = document.getElementById('app');
     appElement.innerHTML = template(templateData);
