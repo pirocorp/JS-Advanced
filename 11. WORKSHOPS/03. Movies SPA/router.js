@@ -1,9 +1,13 @@
-const router = (path) => {
+const router = async (fullPath) => {
     const routes = {
         'home': 'home-template',
         'login': 'login-form-template',
         'register': 'register-form-template',
+        'add-movie': 'add-movie-template',
+        'details': 'movie-details-template',
     };
+
+    let [path, id] = fullPath.split('/');
 
     if(path === 'logout') {
         authService.logout();
@@ -11,16 +15,29 @@ const router = (path) => {
         return;
     }
 
+    let templateId = routes[path];
+    let template = Handlebars.compile(document.getElementById(templateId).innerHTML);    
+
+    let templateData = authService.getAuthData();
+
+    switch(path){
+        case "home":
+            templateData.movies = await movieService.getAll();
+            break;
+        case "details":
+            let movieDetails = await movieService.getMovieDetails(id);
+            Object.assign(templateData, movieDetails);
+            break;
+    }
+
     let appElement = document.getElementById('app');
-    let template = Handlebars.compile(document.getElementById(routes[path]).innerHTML);
-
-    let authData = authService.getAuthData();
-
-    appElement.innerHTML = template(authData);
+    appElement.innerHTML = template(templateData);
 };
 
-const navigate = (path) => {
+const navigate = (fullPath) => {
+    let [path, id] = fullPath.split('/');
+
     history.pushState({}, '', path);
 
-    router(path);
+    router(fullPath);
 }
