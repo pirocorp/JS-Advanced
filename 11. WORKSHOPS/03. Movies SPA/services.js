@@ -12,8 +12,36 @@
                 password,
                 /* returnSecureToken: true */
             }),
-        });
+        }); 
+        
+        if(!response.ok) {
+            return;
+        }
 
-        console.log(response);
+        let data = await response.json();
+        localStorage.setItem('auth', JSON.stringify(data));
+
+        return data;
+    },
+
+    getAuthData() {
+        
+        try {
+            let data = JSON.parse(localStorage.getItem('auth'));
+
+            return {
+                isAuthenticated: Boolean(data.idToken),
+                email: data.email || ''
+            };
+        } catch (error) {
+            return {
+                isAuthenticated: false,
+                email: ''
+            };
+        }        
+    },
+
+    logout() {
+        localStorage.setItem('auth', '');
     }
- }
+ };

@@ -1,20 +1,12 @@
-function addEventListeners() {
-    document
-    .getElementById('navigation')
-    .addEventListener('click', navigateHandler);
-};
-
 function navigateHandler(e) {
     e.preventDefault();        
 
-    if(!e.target.classList.contains('nav-link')){
+    if(!e.target.classList.contains('nav-link') && !e.target.classList.contains('navbar-brand')){
         return;
     }
 
     let url = new URL(e.target.href);
-    history.pushState({}, '', url.pathname);
-
-    router(url.pathname.slice(1));
+    navigate(url.pathname.slice(1));
 };
 
 async function onLoginSubmit(e) {
@@ -27,6 +19,14 @@ async function onLoginSubmit(e) {
 
     
     await authService.login(email, password);
+    navigate('home');
 }
 
-addEventListeners();
+/* Entry point IIFE */
+(() => {
+    let navigationTemplate = Handlebars.compile(document.getElementById('navigation-template').innerHTML);
+    Handlebars.registerPartial('navigation-template', navigationTemplate);
+
+    navigate('home');     
+})()
+
