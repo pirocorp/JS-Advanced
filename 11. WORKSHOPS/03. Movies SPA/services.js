@@ -147,6 +147,13 @@ const movieService = (() => {
 
             let response = await request(`${databaseUrl}/movies/${id}.json`, 'PATCH', { likes });
             return response;
+        },
+        async search(search) {
+            let data = await this.getAll();
+
+            search = search.toLowerCase();
+
+            return data.filter((item) => item.title.toLowerCase().includes(search));
         }
     }
 })();

@@ -23,6 +23,10 @@ const router = async (fullPath) => {
         case "home":
             templateData.movies = await movieService.getAll();
             break;
+        case "search":
+            templateData.movies = await movieService.search(id);
+            path = 'home';
+            break;
         case "details":
             movieDetails = await movieService.getMovieDetails(id);
             Object.assign(templateData, movieDetails);

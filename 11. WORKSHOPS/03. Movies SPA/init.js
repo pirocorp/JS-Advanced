@@ -31,7 +31,7 @@ async function onLoginSubmit(e) {
     navigate('home');
 };
 
-async function onRegisterSubmit(e){
+async function onRegisterSubmit(e) {
     e.preventDefault();
 
     let formData = new FormData(document.forms['register-form']);
@@ -74,7 +74,7 @@ async function onAddMovieSubmit(e) {
     navigate('home');
 };
 
-async function onEditMovieSubmit(e){
+async function onEditMovieSubmit(e) {
     e.preventDefault();
 
     let formData = new FormData(document.forms['edit-movie-form']);
@@ -92,6 +92,15 @@ async function onEditMovieSubmit(e){
     });
 
     navigate('home');
+}
+
+async function onSearchMovieSubmit(e) {
+    e.preventDefault();
+
+    let formData = new FormData(document.forms['search-form']);
+
+    let search = formData.get('search');
+    navigate(`search/${search}`);
 }
 
 /* Entry point IIFE */
