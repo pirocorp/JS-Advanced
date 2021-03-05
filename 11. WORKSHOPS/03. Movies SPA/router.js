@@ -5,6 +5,7 @@ const router = async (fullPath) => {
         'register': 'register-form-template',
         'add-movie': 'add-movie-template',
         'details': 'movie-details-template',
+        'edit': 'edit-movie-template',
     };
 
     let [path, id] = fullPath.split('/');
@@ -19,13 +20,18 @@ const router = async (fullPath) => {
     let template = Handlebars.compile(document.getElementById(templateId).innerHTML);    
 
     let templateData = authService.getAuthData();
+    let movieDetails = {};
 
     switch(path){
         case "home":
             templateData.movies = await movieService.getAll();
             break;
         case "details":
-            let movieDetails = await movieService.getMovieDetails(id);
+            movieDetails = await movieService.getMovieDetails(id);
+            Object.assign(templateData, movieDetails);
+            break;
+        case "edit":
+            movieDetails = await movieService.getMovieDetails(id);
             Object.assign(templateData, movieDetails);
             break;
     }

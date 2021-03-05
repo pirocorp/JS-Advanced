@@ -62,15 +62,37 @@ async function onAddMovieSubmit(e) {
     let title = formData.get('title');
     let description = formData.get('description');
     let imageUrl = formData.get('imageUrl');
+    let ownerId = JSON.parse(localStorage.getItem('auth')).localId;
 
     var data = await movieService.add({
+        title,
+        description,
+        imageUrl,
+        ownerId
+    });
+
+    navigate('home');
+};
+
+async function onEditMovieSubmit(e){
+    e.preventDefault();
+
+    let formData = new FormData(document.forms['edit-movie-form']);
+
+    let title = formData.get('title');
+    let description = formData.get('description');
+    let imageUrl = formData.get('imageUrl');
+
+    let movieId = document.getElementById('movieId').value;
+    
+    let data = await movieService.editMovieDetails(movieId, {
         title,
         description,
         imageUrl
     });
 
     navigate('home');
-};
+}
 
 /* Entry point IIFE */
 (() => {

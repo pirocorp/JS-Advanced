@@ -80,23 +80,38 @@ const authService = {
     }
 };
 
-const movieService = {
-    async add(moveData) {        
-        let data = await request(moviesEndpoint, 'POST', moveData);
+const movieService = (() => {
+    function validateOwnership(movieOwnerId) {
+        let currentUserId = JSON.parse(localStorage.getItem('auth')).localId;
+    
+        return movieOwnerId === currentUserId;
+    };
 
-        return data;
-    },
-    async getAll() {
-        let data = await request(moviesEndpoint, 'GET');
+    return {
+        async add(moveData) {        
+            let data = await request(moviesEndpoint, 'POST', moveData);
+    
+            return data;
+        },
+        async getAll() {
+            let data = await request(moviesEndpoint, 'GET');
+    
+            /* ({ key, ...data[key]})  // Object.assign(data[key], key) */
+            data = Object.keys(data).map(key => ({key, ...data[key]})); 
+    
+            return data;
+        },
+        async getMovieDetails(id) {
+            let data = await request(`${databaseUrl}/movies/${id}.json`, 'GET');
+    
+            data.ownerId = validateOwnership(data.ownerId);
+            data.key = id;
 
-        /* ({ key, ...data[key]})  // Object.assign(data[key], key) */
-        data = Object.keys(data).map(key => ({key, ...data[key]})); 
-
-        return data;
-    },
-    async getMovieDetails(id) {
-        let data = await request(`${databaseUrl}/movies/${id}.json`, 'GET');
-
-        return data;
+            return data;
+        },
+        async editMovieDetails(id, payload){
+            let data = await request(`${databaseUrl}/movies/${id}.json`, 'PATCH', payload);
+            return data;
+        }
     }
-};
+})();
