@@ -1,10 +1,9 @@
 function solve() {
     const adoptionElement = document.querySelector('#adoption ul');
     const adoptedElement = document.querySelector('#adopted ul');
-
     const addButton = document.querySelector('#container button');
-
     const fields = document.querySelectorAll('#container input');
+
     const inputs = {
         name: fields[0],
         age: fields[1],
@@ -28,33 +27,7 @@ function solve() {
             return
         }
 
-        const onContactOwnerClickHandler = (e) => {
-            const newOwnerInputElement = createDOMElement(
-                'input', 
-                {
-                    placeholder: 'Enter your names',
-                }
-            );
-
-            const petTakeButton = createDOMElement('button', {}, 'Yes! I take it!');
-            petTakeButton.addEventListener(
-                'click', 
-                onPetTakeButtonClickHanlder.bind(null, newOwnerInputElement, petElement)
-            );
-
-            const confirmationDiv = createDOMElement(
-                'div', 
-                {},
-                newOwnerInputElement,
-                petTakeButton
-            );
-
-            contactOwnerElement.remove();
-            petElement.appendChild(confirmationDiv);
-        };
-
         const contactOwnerElement = createDOMElement('button', {}, 'Contact with owner');
-        contactOwnerElement.addEventListener('click', onContactOwnerClickHandler);
 
         const petElement = createDOMElement(
             'li', 
@@ -72,12 +45,42 @@ function solve() {
             contactOwnerElement
         );
 
+        contactOwnerElement.addEventListener('click', onContactOwnerClickHandler.bind(null, petElement));
+
+
         adoptionElement.appendChild(petElement);
 
         Array.from(fields).forEach(f => f.value = '');
     };
 
     addButton.addEventListener("click", onAddClickHandler);
+
+    function onContactOwnerClickHandler(petElement) {
+        console.log(petElement);
+
+        const newOwnerInputElement = createDOMElement(
+            'input', 
+            {
+                placeholder: 'Enter your names',
+            }
+        );
+
+        const petTakeButton = createDOMElement('button', {}, 'Yes! I take it!');
+        petTakeButton.addEventListener(
+            'click', 
+            onPetTakeButtonClickHanlder.bind(null, newOwnerInputElement, petElement)
+        );
+
+        const confirmationDiv = createDOMElement(
+            'div', 
+            {},
+            newOwnerInputElement,
+            petTakeButton
+        );
+
+        petElement.querySelector('button').remove();
+        petElement.appendChild(confirmationDiv);
+    };
 
     function onPetTakeButtonClickHanlder(newOwnerInputElement, petElement) {
         var newOwner = newOwnerInputElement.value.trim();
