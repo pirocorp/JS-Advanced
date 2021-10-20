@@ -46,7 +46,7 @@ describe("Test Numbers", () => {
         });
 
         it('detect invalid parameters', () => {
-/*             expect(() => testNumbers.numberChecker('')).to.throw('The input is not a number!');
+/*          expect(() => testNumbers.numberChecker('')).to.throw('The input is not a number!');
             expect(() => testNumbers.numberChecker('    ')).to.throw('The input is not a number!');
             expect(() => testNumbers.numberChecker([])).to.throw('The input is not a number!');            
             expect(() => testNumbers.numberChecker(null)).to.throw('The input is not a number!'); */
