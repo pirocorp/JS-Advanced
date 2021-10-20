@@ -1,0 +1,14 @@
+{
+  "name": "test-numbers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "testNumbers.js",
+  "scripts": {
+    "test": "testNumbers.tests"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.4"
+  }
+}
