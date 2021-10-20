@@ -10,8 +10,10 @@ function solve() {
         kind: fields[2],
         owner: fields[3],
     };    
-      
-    const onAddClickHandler = (e) => {
+
+    addButton.addEventListener("click", onAddClickHandler);
+
+    function onAddClickHandler (e) {
         e.preventDefault();
 
         const name = inputs.name.value.trim();
@@ -47,13 +49,10 @@ function solve() {
 
         contactOwnerElement.addEventListener('click', onContactOwnerClickHandler.bind(null, petElement));
 
-
         adoptionElement.appendChild(petElement);
 
         Array.from(fields).forEach(f => f.value = '');
     };
-
-    addButton.addEventListener("click", onAddClickHandler);
 
     function onContactOwnerClickHandler(petElement) {
         console.log(petElement);
@@ -92,15 +91,12 @@ function solve() {
         const confirmationDiv = petElement.querySelector('div');
         confirmationDiv.remove();
 
-        const onCheckedClickHandler = (e) => {
-            petElement.remove();
-        };
-    
+        const onCheckedClickHandler = (e) => petElement.remove();
+
         const checkBtn = createDOMElement('button', {}, 'Checked');
         checkBtn.addEventListener('click', onCheckedClickHandler);
 
-        petElement.appendChild(checkBtn);
-    
+        petElement.appendChild(checkBtn);    
         
         adoptedElement.appendChild(petElement);
     
