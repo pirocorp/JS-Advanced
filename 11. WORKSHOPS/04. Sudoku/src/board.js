@@ -4,9 +4,11 @@ export function renderBoard(values, main) {
     const rows = [];
     const columns = [];
 
-    main.appendChild(clusters[0].element);
-    main.appendChild(clusters[1].element);
-    main.appendChild(clusters[2].element);
+    main.replaceChildren(
+        clusters[0].element,
+        clusters[1].element,
+        clusters[2].element
+    );
 
     formatCells(blocks, rows, columns);
 
@@ -91,7 +93,7 @@ function cell(value) {
     return element;
 };
 
-function createDOMElement(type, attr, ...content) {
+export function createDOMElement(type, attr, ...content) {
     const element = document.createElement(type);       
 
     // Adds element attributes

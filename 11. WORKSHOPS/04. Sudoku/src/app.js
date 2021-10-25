@@ -3,14 +3,18 @@
 // Handle input
 // Check solution
 
-import { p1 } from './puzzles.js';
 import { renderBoard, createButton } from './board.js';
+import { init } from './import.js';
 
 window.addEventListener('DOMContentLoaded', start);
 
 function start() {
     const main = document.querySelector('main');
-    const cells = renderBoard(p1, main);   
+    let cells = {
+        blocks: [[]],
+        rows: [[]],
+        columns: [[]],
+    }   
     
     const checkBtn = document.getElementById('checkBtn');
     checkBtn.addEventListener('click', () => {
@@ -25,6 +29,9 @@ function start() {
         cells.blocks.forEach(c => c.forEach(x => x.classList.remove('error')));
         uncheckedBtn.replaceWith(checkBtn);
     });
+    uncheckedBtn.className = 'check-btn';
+    
+    init((puzzle) => cells = renderBoard(puzzle, main));
 }
 
 function check(cells) {
