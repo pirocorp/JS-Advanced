@@ -1,24 +1,33 @@
 import { createDOMElement, createButton } from './board.js';
 import { p1, p2 } from './puzzles.js';
+import { createTimer } from './timer.js';
 
 export function init (generate) {
     generate(p2);
 
-    const input = createDOMElement('textarea', {});
+    const main = document.querySelector('main');
+    const panel = document.getElementById('panel');
+    const timer = createTimer();
+
     const showBtn = document.getElementById('loadBtn');
 
+    const pauseBtn = document.getElementById('pauseBtn');
+    pauseBtn.addEventListener('click', () => {
+        main.remove();
+        timer.pause();
+        pauseBtn.replaceWith(resumeBtn);
+    });
+
+    const resumeBtn = createButton('Resume', () => {
+        panel.before(main);
+        timer.resume();
+        resumeBtn.replaceWith(pauseBtn);
+    });    
+
     showBtn.addEventListener('click', () => {
-        showBtn.replaceWith(div);
+        generate(p1);
+        timer.resume();
     });
 
-    const hideBtn = createButton('Close Load', () => {
-        div.replaceWith(showBtn);
-    });
-
-    const confirmBtn = createButton('Load', () => {
-        const puzzle = JSON.parse(input.value);
-        generate(puzzle);
-    });
-
-    const div = createDOMElement('div', {}, hideBtn, input, confirmBtn);
+    return timer;
 }

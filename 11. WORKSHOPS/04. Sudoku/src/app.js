@@ -18,9 +18,22 @@ function start() {
     
     const checkBtn = document.getElementById('checkBtn');
     checkBtn.addEventListener('click', () => {
-        cells.blocks.forEach(check);
-        cells.rows.forEach(check);
-        cells.columns.forEach(check);
+        const blocksReady = cells.blocks
+            .map(b => check(b))
+            .every(b => b);
+
+        const rowsReady = cells.rows
+            .map(b => check(b))
+            .every(b => b);
+
+        const columnsReady = cells.columns
+            .map(b => check(b))
+            .every(b => b);
+
+        if(blocksReady && rowsReady && columnsReady) {
+            alert('You win!');
+            timer.pause();
+        }
 
         checkBtn.replaceWith(uncheckedBtn)
     });
@@ -31,7 +44,7 @@ function start() {
     });
     uncheckedBtn.className = 'check-btn';
     
-    init((puzzle) => cells = renderBoard(puzzle, main));
+    const timer = init((puzzle) => cells = renderBoard(puzzle, main));
 }
 
 function check(cells) {
@@ -43,5 +56,8 @@ function check(cells) {
 
     if(numbers.size != 9) {
         cells.forEach(c => c.classList.add('error'));
+        return false;
     }
+
+    return true;
 }
